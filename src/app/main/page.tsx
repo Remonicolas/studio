@@ -34,18 +34,22 @@ export default function MainUserScreen() {
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-lg">Welcome to Palermo Gym Hub</CardTitle>
+          <CardTitle className=" flex justify-center mt-4 text-lg text-white">MyGym -- Palermo</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
           <Grid numColumns={2} gap={4}>
-            <Button onClick={() => navigateTo("/class-reservations")}>Class Reservations</Button>
-            <Button onClick={() => navigateTo("/payment-tracking")}>Payment Tracking</Button>
-            <Button onClick={() => navigateTo("/training-plans")}>Training Plans</Button>
-            <Button onClick={() => navigateTo("/physical-progress")}>Physical Progress</Button>
-            <Button onClick={() => navigateTo("/outdoor-classes")}>Outdoor Classes</Button>
-            <Button onClick={() => navigateTo("/discounts-benefits")}>Discounts / Benefits</Button>
-             <Button variant="destructive" onClick={() => router.push("/")}>Logout</Button>
+            <Button onClick={() => navigateTo("/class-reservations")}>Reservar clase</Button>
+            <Button onClick={() => navigateTo("/payment-tracking")}>Paga tu cuota</Button>
+            <Button onClick={() => navigateTo("/training-plans")}>Planes de entrenamiento</Button>
+            <Button onClick={() => navigateTo("/physical-progress")}>Tu progreso fisico</Button>
+            <Button onClick={() => navigateTo("/outdoor-classes")}>Novedades ! </Button>
+            <Button onClick={() => navigateTo("/discounts-benefits")}>Descuentos / Beneficios</Button>
           </Grid>
+          <div className="flex justify-center mt-4">
+              <Button variant="destructive" onClick={() => router.push("/")}>
+              Cerrar Sesión
+              </Button>
+        </div>
         </CardContent>
       </Card>
     </div>
