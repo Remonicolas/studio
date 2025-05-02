@@ -1,6 +1,7 @@
-import type {Metadata} from 'next';
-import {Geist, Geist_Mono} from 'next/font/google';
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import Script from 'next/script'; // ✅ Importar Script
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,7 +27,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+
+        {/* 💬 Chatbot de Tidio */}
+        <Script
+          src="//code.tidio.co/o9ja9zvfv5m7ehfmm4nmca4xww8ozb1n.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
 }
+
