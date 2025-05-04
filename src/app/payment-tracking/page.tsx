@@ -12,20 +12,20 @@ export default function PlanesDePagoScreen() {
 
   const planes = [
     {
-      titulo: "Plan Mensual",
-      descripcion: "Un mes sin descuento",
+      titulo: "Plan 2 Veces semanales",
+      descripcion: "2 clases por semana – $15.000",
     },
     {
-      titulo: "Plan 3 Meses",
-      descripcion: "Plan tri con 15% de descuento",
+      titulo: "Plan 3 Veces semanales",
+      descripcion: "3 clases por semana – $18.000",
     },
     {
-      titulo: "Plan 6 Meses",
-      descripcion: "Pagás 6 meses y tenés 30% de descuento",
+      titulo: "Plan Libre Full",
+      descripcion: "Clases ilimitadas – $22.000",
     },
     {
-      titulo: "Plan 12 Meses",
-      descripcion: "Con este plan obtenés 45% de descuento",
+      titulo: "Plan Anual Full!",
+      descripcion: "12 meses de acceso ilimitado – $220.000 (¡Pagás 10, entrenás 12!)",
     },
   ];
 
