@@ -42,7 +42,7 @@ export default function MainUserScreen() {
             <Button onClick={() => navigateTo("/payment-tracking")}>Paga tu cuota</Button>
             <Button onClick={() => navigateTo("/training-plans")}>Planes de entrenamiento</Button>
             <Button onClick={() => navigateTo("/physical-progress")}>Tu progreso fisico</Button>
-            <Button onClick={() => navigateTo("/outdoor-classes")}>Novedades ! </Button>
+            <Button onClick={() => navigateTo("/outdoor-classes")}>Acceso a mi Plan</Button>
             <Button onClick={() => navigateTo("/discounts-benefits")}>Descuentos / Beneficios</Button>
           </Grid>
           <div className="flex justify-center mt-4">
