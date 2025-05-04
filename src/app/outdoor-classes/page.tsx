@@ -2,15 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect } from "react";
-import { Label } from "@/components/ui/label";
+import Image from "next/image";
 
-export default function OutdoorClassesScreen() {
+export default function GymQRScreen() {
   const router = useRouter();
 
   useEffect(() => {
-    // Prevent caching of the page
     window.addEventListener("beforeunload", () => {
       window.location.reload();
     });
@@ -23,20 +21,25 @@ export default function OutdoorClassesScreen() {
   }, []);
 
   return (
-    <div className="grid h-screen place-items-center p-4">
-      <Card className="w-[450px]">
-        <CardHeader>
-          <CardTitle className="text-muted-foreground">Novedades del Gym</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <Label className="text-muted-foreground text-center block">
-            ¡Próximamente! Acá encontrarás las novedades del Gym.
-          </Label>
-          <Button variant="secondary" onClick={() => router.back()}>
-            Volver Menu Principal
-          </Button>
-        </CardContent>
-      </Card>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black px-4 py-8 text-center">
+      <h1 className="text-green-400 text-xl md:text-2xl font-semibold mb-2">Plan X 3</h1>
+      <p className="text-green-400 text-base md:text-lg mb-6">Vencimiento del plan: 30/7/2025</p>
+
+      <div className="w-[250px] h-[250px] md:w-[300px] md:h-[300px] mb-8">
+        <Image
+          src="/qr_mygym_youtube.png"
+          alt="Código QR de acceso"
+          width={300}
+          height={300}
+          className="w-full h-full object-contain"
+          priority // hace que el QR cargue rápido
+        />
+      </div>
+
+      <Button variant="secondary" onClick={() => router.back()}>
+        Volver al menú principal
+      </Button>
     </div>
   );
 }
+
