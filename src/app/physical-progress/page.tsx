@@ -4,76 +4,57 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
+import { Label } from "@/components/ui/label";
 
-// Progreso de cuerpo general
-export default function PhysicalProgressScreen() {
+export default function ProgresoFisico() {
   const router = useRouter();
 
-  const [zone, setZone] = useState<string>("");
+  const [progreso, setProgreso] = useState(70); // Este es un ejemplo de progreso, puedes cambiarlo dinámicamente.
 
-  // Manejo de progreso físico por área
-  const handleZoneClick = (zone: string) => {
-    setZone(zone);
+  // Función para calcular el progreso y mostrarlo en un gráfico de barras.
+  const renderChart = () => {
+    const canvas = document.getElementById("myChart");
+    const ctx = canvas.getContext("2d");
+
+    // Limpiar el canvas antes de dibujar el nuevo gráfico
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar barra de progreso
+    ctx.fillStyle = "#4CAF50"; // Color verde para el progreso
+    ctx.fillRect(10, 50, (canvas.width - 20) * (progreso / 100), 20);
+
+    // Agregar texto de porcentaje
+    ctx.fillStyle = "#fff"; // Color blanco para el texto
+    ctx.font = "16px Arial";
+    ctx.fillText(`${progreso}% de progreso`, canvas.width / 2 - 50, 40);
   };
 
+  // Ejecutamos el renderizado del gráfico al cargar el componente
+  React.useEffect(() => {
+    renderChart();
+  }, [progreso]);
+
   return (
-    <div className="grid h-screen place-items-center p-4 bg-gray-800">
+    <div className="grid h-screen place-items-center p-4 bg-black">
       <Card className="w-full sm:w-[450px]">
         <CardHeader>
           <CardTitle className="text-white">Progreso Físico</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4 flex flex-col items-center text-white">
-          {/* Figura humana con áreas generales */}
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" className="w-full max-w-md">
-            {/* Pecho y Espalda (Parte superior) */}
-            <rect
-              x="70"
-              y="50"
-              width="60"
-              height="30"
-              className="fill-blue-400 stroke-gray-600 stroke-2 hover:fill-blue-500 cursor-pointer transition-all duration-200"
-              onClick={() => handleZoneClick("Parte Superior del Cuerpo")}
-            />
-            {/* Abdomen */}
-            <rect
-              x="80"
-              y="90"
-              width="40"
-              height="50"
-              className="fill-green-400 stroke-gray-600 stroke-2 hover:fill-green-500 cursor-pointer transition-all duration-200"
-              onClick={() => handleZoneClick("Abdomen")}
-            />
-            {/* Pierna izquierda */}
-            <rect
-              x="75"
-              y="150"
-              width="20"
-              height="80"
-              className="fill-red-400 stroke-gray-600 stroke-2 hover:fill-red-500 cursor-pointer transition-all duration-200"
-              onClick={() => handleZoneClick("Pierna Izquierda")}
-            />
-            {/* Pierna derecha */}
-            <rect
-              x="105"
-              y="150"
-              width="20"
-              height="80"
-              className="fill-red-400 stroke-gray-600 stroke-2 hover:fill-red-500 cursor-pointer transition-all duration-200"
-              onClick={() => handleZoneClick("Pierna Derecha")}
-            />
-          </svg>
+          <div className="space-y-4">
+            {/* Canvas para el gráfico de barras */}
+            <canvas
+              id="myChart"
+              width="400"
+              height="100"
+              className="bg-gray-800 rounded-lg"
+            ></canvas>
+          </div>
 
-          {/* Mostrar el progreso en base a la zona seleccionada */}
-          {zone && (
-            <div className="mt-4 p-4 bg-gray-900 bg-opacity-75 rounded-lg shadow-md w-full text-center">
-              <h2 className="text-xl font-semibold mb-2">{`Progreso en ${zone}`}</h2>
-              <div className="space-y-2">
-                <p>Ganancia de masa muscular: <span className="font-bold">10% (último mes)</span></p>
-                <p>Reducción de grasa: <span className="font-bold">5% (último mes)</span></p>
-                <p>Mejora en rendimiento de sentadillas: <span className="font-bold">+5 kg</span></p>
-              </div>
-            </div>
-          )}
+          <div className="mt-4 p-4 bg-gray-900 bg-opacity-75 rounded-lg shadow-md w-full text-center">
+            <h2 className="text-xl font-semibold mb-2">Meta: Aumento de masa muscular</h2>
+            <p>Progreso: <span className="font-bold">{progreso}% (último mes)</span></p>
+          </div>
 
           <Button variant="secondary" onClick={() => router.back()} className="mt-4">
             Volver al Menú Principal
@@ -83,3 +64,4 @@ export default function PhysicalProgressScreen() {
     </div>
   );
 }
+
